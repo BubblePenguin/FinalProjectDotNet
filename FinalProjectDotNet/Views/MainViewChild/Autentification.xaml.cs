@@ -1,5 +1,4 @@
-﻿using FinalProjectDotNet.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FinalProjectDotNet
+namespace FinalProjectDotNet.Views.MainViewChild
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Autentification.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Autentification : UserControl
     {
-        public MainWindow()
+        public Autentification()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

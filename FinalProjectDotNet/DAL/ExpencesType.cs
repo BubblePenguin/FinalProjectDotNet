@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalProjectDotNet.DAL
 {
-    class ExpencesType
+    public class ExpencesType
     {
         public int Id { get; set; }
         public string Name { get; set; }

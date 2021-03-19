@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FinalProjectDotNet.Views
+namespace FinalProjectDotNet.Views.MainViewChild
 {
     /// <summary>
-    /// Interaction logic for Autentification.xaml
+    /// Interaction logic for MainApp.xaml
     /// </summary>
-    public partial class Autentification : Window
+    public partial class MainApp : UserControl
     {
-        public Autentification()
+        public MainApp()
         {
             InitializeComponent();
         }
