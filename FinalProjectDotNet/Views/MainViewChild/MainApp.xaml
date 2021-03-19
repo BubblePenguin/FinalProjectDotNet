@@ -19,7 +19,7 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0">OK</Button>
             <Border Grid.Column="1" Background="White" BorderBrush="Gainsboro" BorderThickness="1">
-                <TextBlock TextAlignment="Center" Text="{Binding CurrentUser.WalletAmount}"/>
+                <Label HorizontalContentAlignment="Center" Content="{Binding CurrentUser.WalletAmount, UpdateSourceTrigger=PropertyChanged}"/>
             </Border>
 
             <Button Grid.Column="2">OK</Button>
@@ -119,7 +119,7 @@
                             <Label Content="Object: " Grid.Column="4"/>
                             <ComboBox Grid.Column="5"/>
                             <Label Content="Comment:" Grid.Column="6"/>
-                            <TextBox Grid.Column="7" TextWrapping="Wrap" FontSize="10"/>
+                            <TextBox Grid.Column="7" TextWrapping="Wrap" FontSize="10" Text=""/>
                             <Button Content="Add" Padding="10 0 10 0" Grid.Column="8"/>
 
                         </Grid>

@@ -65,7 +65,6 @@ namespace FinalProjectDotNet.ViewModels
                     {
                         CurrentUser = user.FirstOrDefault();
                         CurentView = new MainApp();
-                        MessageBox.Show(CurrentUser.WalletAmount.ToString());
                     }
                 }
             });

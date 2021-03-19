@@ -9,11 +9,45 @@ namespace FinalProjectDotNet.DAL
 {
     public class User : BaseNotifyPropertyChanged
     {
-        public int Id { get; set; }
-        public string Login { get; set; }
-        public string Name { get; set; }
-        public string Lastname { get; set; }
+        int id;
+        string login;
+        string name;
+        string lastname;
         decimal walletAmount;
+        public int Id 
+        {
+            get => id;
+            set
+            {
+                id = value;
+                Notify();
+            }
+        }
+        public string Login 
+        {
+            get => login;
+            set
+            {
+                login = value;
+                Notify();
+            }
+        }
+        public string Name {
+            get => name;
+            set
+            {
+                name = value;
+                Notify();
+            }
+        }
+        public string Lastname {
+            get => lastname;
+            set
+            {
+                lastname = value;
+                Notify();
+            }
+        }
         public decimal WalletAmount {
             get => walletAmount;
             set
