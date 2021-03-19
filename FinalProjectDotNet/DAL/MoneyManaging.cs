@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalProjectDotNet.Models
+namespace FinalProjectDotNet.DAL
 {
-    class MainApp
+    class MoneyManaging
     {
-        
     }
 }
