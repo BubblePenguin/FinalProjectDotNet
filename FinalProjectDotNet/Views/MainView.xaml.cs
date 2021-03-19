@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalProjectDotNet.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,15 @@ namespace FinalProjectDotNet
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (UsersContext db = new UsersContext()) 
+            {
+                db.User.Add(new User { Login = "Test" });
+                db.SaveChanges();
+            }
         }
     }
 }
