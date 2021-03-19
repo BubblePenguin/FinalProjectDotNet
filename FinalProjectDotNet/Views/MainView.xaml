@@ -74,23 +74,54 @@
             </TabItem>
             <TabItem Header="Expences">
 
-                <TabControl>
-                    <TabItem Header="Day">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TabControl Grid.Row="0">
+                        <TabItem Header="Day">
 
-                    </TabItem>
-                    <TabItem Header="Week">
+                        </TabItem>
+                        <TabItem Header="Week">
 
-                    </TabItem>
-                    <TabItem Header="Month">
+                        </TabItem>
+                        <TabItem Header="Month">
 
-                    </TabItem>
-                    <TabItem Header="Year">
+                        </TabItem>
+                        <TabItem Header="Year">
 
-                    </TabItem>
-                    <TabItem Header="Period">
+                        </TabItem>
+                        <TabItem Header="Period">
 
-                    </TabItem>
-                </TabControl>
+                        </TabItem>
+                    </TabControl>
+                    <Grid Grid.Row="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="11*"/>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="12*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="12*"/>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="16*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Add income | Sum:" Grid.Column="0"/>
+                            <TextBox Grid.Column="1" TextAlignment="Center"/>
+                            <Label Content="Date:" Grid.Column="2"/>
+                            <ComboBox Grid.Column="3"/>
+                            <Label Content="Object: " Grid.Column="4"/>
+                            <ComboBox Grid.Column="5"/>
+                            <Label Content="Comment:" Grid.Column="6"/>
+                            <TextBox Grid.Column="7" TextWrapping="Wrap" FontSize="10"/>
+                            <Button Content="Add" Padding="10 0 10 0" Grid.Column="8"/>
+
+                        </Grid>
+                    </Grid>
+                </Grid>
 
             </TabItem>
         </TabControl>
