@@ -1,6 +1,7 @@
 ﻿using FinalProjectDotNet.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,6 @@ namespace FinalProjectDotNet.DAL
     {
         int id;
         string login;
-        string name;
-        string lastname;
         decimal walletAmount;
         public int Id 
         {
@@ -23,6 +22,7 @@ namespace FinalProjectDotNet.DAL
                 Notify();
             }
         }
+        [Required]
         public string Login 
         {
             get => login;
@@ -32,23 +32,9 @@ namespace FinalProjectDotNet.DAL
                 Notify();
             }
         }
-        public string Name {
-            get => name;
-            set
-            {
-                name = value;
-                Notify();
-            }
-        }
-        public string Lastname {
-            get => lastname;
-            set
-            {
-                lastname = value;
-                Notify();
-            }
-        }
-        public decimal WalletAmount {
+        
+        public decimal WalletAmount
+        {
             get => walletAmount;
             set
             {

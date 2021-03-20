@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FinalProjectDotNet.Views.MainViewChild"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="white">
+    <Grid Background="white" DataContext="{Binding MainViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="13*"/>
@@ -19,7 +19,10 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0">OK</Button>
             <Border Grid.Column="1" Background="White" BorderBrush="Gainsboro" BorderThickness="1">
-                <Label HorizontalContentAlignment="Center" Content="{Binding CurrentUser.WalletAmount, UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Wallet: " Margin="10 0 0 0"/>
+                    <Label Content="{Binding CurrentUser.WalletAmount}"/>
+                </StackPanel>
             </Border>
 
             <Button Grid.Column="2">OK</Button>

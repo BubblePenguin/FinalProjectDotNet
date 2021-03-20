@@ -23,7 +23,7 @@
                     <StackPanel Grid.Row="1" Grid.Column="1">
                         <Label Content="UserName" />
                         <TextBox Text="{Binding Login}"/>
-                        <Button Content="Login" Margin="0 10 0 10" Command="{Binding AppCommand}"/>
+                        <Button Content="Login" Margin="0 10 0 10" Command="{Binding AutentificationCommand}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -42,13 +42,9 @@
                     <StackPanel Grid.Row="1" Grid.Column="1">
                         <Label Content="Login" />
                         <TextBox Text="{Binding Login}"/>
-                        <Label Content="Name" />
-                        <TextBox/>
-                        <Label Content="Lastname" />
-                        <TextBox/>
-                        <Label Content="How Much Money do you have right now" />
-                        <TextBox/>
-                        <Button Content="Register and login" Margin="0 10 0 10" Command="{}"/>
+                        <Label Content="How Much Money do you have in your Bank Account (Please Use Only decimals, i didnt write PROVEORCHKY)" />
+                        <TextBox Text="{Binding Cash}"/>
+                        <Button Content="Register and login" Margin="0 10 0 10" Command="{Binding RegistrationCommand}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

@@ -14,32 +14,8 @@ namespace FinalProjectDotNet.ViewModels
 {
     public class MainViewModel : BaseNotifyPropertyChanged
     {
-        #region Commands
-        public ICommand AppCommand { get; set; }
-        #endregion
-
-
-
-        string login;
-        UserControl curentView;
         User currentUser;
-
-        public string Login { get => login;
-            set
-            {
-                login = value;
-                Notify();
-            }
-        }
-        public UserControl CurentView { 
-            get => curentView;
-            set
-            {
-                curentView = value;
-                Notify();
-            }
-        }
-        User CurrentUser { 
+        public User CurrentUser { 
             get => currentUser;
             set
             {
@@ -49,25 +25,8 @@ namespace FinalProjectDotNet.ViewModels
         }
         public MainViewModel()
         {
-            InitCommands();
-            CurentView = new Autentification();
-            Login = "Test";
+            CurrentUser = null;
         }
 
-        private void InitCommands()
-        {
-            AppCommand = new RelayCommand(x =>
-            {
-                using(UsersContext db = new UsersContext())
-                {
-                    var user = from b in db.User where b.Login == Login select b;
-                    if (user.FirstOrDefault() != null && user.FirstOrDefault().Login == Login)
-                    {
-                        CurrentUser = user.FirstOrDefault();
-                        CurentView = new MainApp();
-                    }
-                }
-            });
-        }
     }
 }

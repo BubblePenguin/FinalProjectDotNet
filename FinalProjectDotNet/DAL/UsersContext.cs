@@ -14,7 +14,7 @@ namespace FinalProjectDotNet.DAL
         {
             base.Seed(context);
 
-            User test = new User { Login = "Test", Name = "Ivan", Lastname = "Kotov", WalletAmount = 3000 };
+            User test = new User { Login = "Test", WalletAmount = 3000 };
 
             List<ExpencesType> expencesTypes = new List<ExpencesType>
             {
@@ -53,20 +53,20 @@ namespace FinalProjectDotNet.DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<User>().HasKey(x => x.Id);
-            modelBuilder.Entity<User>().Property(x => x.Id)
-                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            //modelBuilder.Entity<User>().HasIndex(x => x.Login).IsUnique();
+            //modelBuilder.Entity<User>().ToTable("Users");
+            //modelBuilder.Entity<User>().HasKey(x => x.Id);
+            //modelBuilder.Entity<User>().Property(x => x.Id)
+            //    .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            ////modelBuilder.Entity<User>().HasIndex(x => x.Login).IsUnique();
 
-            modelBuilder.Entity<Expences>().HasKey(x => x.Id);
-            modelBuilder.Entity<Expences>().Property(x => x.Id)
-                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            //modelBuilder.Entity<Expences>().HasKey(x => x.Id);
+            //modelBuilder.Entity<Expences>().Property(x => x.Id)
+            //    .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
 
-            modelBuilder.Entity<Income>().HasKey(x => x.Id);
-            modelBuilder.Entity<Income>().Property(x => x.Id)
-                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            //modelBuilder.Entity<Income>().HasKey(x => x.Id);
+            //modelBuilder.Entity<Income>().Property(x => x.Id)
+            //    .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
         }
     }
 }

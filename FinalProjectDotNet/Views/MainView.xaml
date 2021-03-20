@@ -8,9 +8,9 @@
         xmlns:vm="clr-namespace:FinalProjectDotNet.ViewModels"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
-        <vm:MainViewModel></vm:MainViewModel>
+        <vm:AutentificationViewModel></vm:AutentificationViewModel>
     </Window.DataContext>
-    <ContentControl Content="{Binding CurentView}">
+    <ContentControl Content="{Binding CurentView}" >
         
     </ContentControl>
 </Window>

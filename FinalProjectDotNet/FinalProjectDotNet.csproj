@@ -66,6 +66,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Infrastructure\RelayCommand.cs" />
+    <Compile Include="ViewModels\AutentificationViewModel.cs" />
     <Compile Include="Views\MainViewChild\Autentification.xaml.cs">
       <DependentUpon>Autentification.xaml</DependentUpon>
     </Compile>
