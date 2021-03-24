@@ -17,15 +17,14 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0">OK</Button>
+            <!--<Button Grid.Column="0">OK</Button>-->
             <Border Grid.Column="1" Background="White" BorderBrush="Gainsboro" BorderThickness="1">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Wallet: " Margin="10 0 0 0"/>
                     <Label Content="{Binding CurrentUser.WalletAmount}"/>
                 </StackPanel>
             </Border>
-
-            <Button Grid.Column="2">OK</Button>
+            <!--<Button Grid.Column="2">OK</Button>-->
         </Grid>
         <TabControl Grid.Row="1">
             <TabItem Header="Income">
@@ -67,9 +66,9 @@
                             <Label Content="Add Income | Sum:" Grid.Column="0"/>
                             <TextBox Grid.Column="1" TextAlignment="Center"/>
                             <Label Content="Date:" Grid.Column="2"/>
-                            <ComboBox Grid.Column="3"/>
+                            <ComboBox Grid.Column="3" ItemsSource="{Binding Dates}"/>
                             <Label Content="Object: " Grid.Column="4"/>
-                            <ComboBox Grid.Column="5"/>
+                            <ComboBox Grid.Column="5" ItemsSource="{Binding MainViewModel.temp}"/>
                             <Label Content="Comment:" Grid.Column="6"/>
                             <TextBox Grid.Column="7" TextWrapping="Wrap" FontSize="10"/>
                             <Button Content="Add" Padding="10 0 10 0" Grid.Column="8"/>

@@ -1,5 +1,5 @@
-﻿using FinalProjectDotNet.DAL;
-using FinalProjectDotNet.Infrastructure;
+﻿using FinalProjectDotNet.Infrastructure;
+using FinalProjectDotNet.Models;
 using FinalProjectDotNet.Views.MainViewChild;
 using System;
 using System.Collections.Generic;
@@ -16,38 +16,36 @@ namespace FinalProjectDotNet.ViewModels
         #region Commands
         public ICommand AutentificationCommand { get; set; }
         public ICommand RegistrationCommand { get; set; }
+        private void InitCommands()
+        {
+            AutentificationCommand = new RelayCommand(x =>
+            {
+                int userid = AufModel.Auf(Login);
+                if (userid != -1)
+                {
+                    MainViewModel.ChangeUserById(userid);
+                    CurentView = new MainApp();
+                }
+            });
+
+            RegistrationCommand = new RelayCommand(x =>
+            {
+                AufModel.Add(Login, Cash);
+
+                int userid = AufModel.Auf(Login);
+                if (userid != -1)
+                {
+                    MainViewModel.ChangeUserById(userid);
+                    CurentView = new MainApp();
+                }
+            });
+
+        }
         #endregion
 
-        User currentUser;
-        public User CurrentUser
-        {
-            get => currentUser;
-            set
-            {
-                currentUser = value;
-                Notify();
-            }
-        }
-        string login;
-        public string Login
-        {
-            get => login;
-            set
-            {
-                login = value;
-                Notify();
-            }
-        }
-        decimal cash;
-        public decimal Cash
-        {
-            get => cash;
-            set
-            {
-                cash = value;
-                Notify();
-            }
-        }
+        public string Login { get; set; }
+        public decimal Cash { get; set; }
+        public MainViewModel MainViewModel { get; set; }
 
         public AutentificationViewModel()
         {
@@ -57,16 +55,6 @@ namespace FinalProjectDotNet.ViewModels
             Login = "Test";
         }
 
-        MainViewModel mainviewmodel;
-        public MainViewModel MainViewModel
-        {
-            get => mainviewmodel;
-            set
-            {
-                mainviewmodel = value;
-                Notify();
-            }
-        }
         UserControl curentView;
         public UserControl CurentView
         {
@@ -76,39 +64,6 @@ namespace FinalProjectDotNet.ViewModels
                 curentView = value;
                 Notify();
             }
-        }
-
-        private void InitCommands()
-        {
-            AutentificationCommand = new RelayCommand(x =>
-            {
-                using (UsersContext db = new UsersContext())
-                {
-                    var user = from b in db.User where b.Login == Login select b;
-                    if (user.FirstOrDefault() != null && user.FirstOrDefault().Login == Login)
-                    {
-                        MainViewModel.CurrentUser = user.FirstOrDefault();
-                        CurentView = new MainApp();
-                    }
-                }
-            });
-
-            RegistrationCommand = new RelayCommand(x =>
-            {
-                using (UsersContext db = new UsersContext())
-                {
-                    db.User.Add(new User { Login = Login, WalletAmount = Cash });
-                    db.SaveChanges();
-
-                    var user = from b in db.User where b.Login == Login select b;
-                    if (user.FirstOrDefault() != null && user.FirstOrDefault().Login == Login)
-                    {
-                        MainViewModel.CurrentUser = user.FirstOrDefault();
-                        CurentView = new MainApp();
-                    }
-                }
-            });
-
         }
     }
 }

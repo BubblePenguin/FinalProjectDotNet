@@ -66,6 +66,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Infrastructure\RelayCommand.cs" />
+    <Compile Include="Models\AufModel.cs" />
+    <Compile Include="Models\MainModel.cs" />
     <Compile Include="ViewModels\AutentificationViewModel.cs" />
     <Compile Include="Views\MainViewChild\Autentification.xaml.cs">
       <DependentUpon>Autentification.xaml</DependentUpon>
@@ -129,9 +131,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
