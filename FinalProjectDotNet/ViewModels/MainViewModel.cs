@@ -1,8 +1,6 @@
 ﻿using FinalProjectDotNet.DAL;
 using FinalProjectDotNet.DAL.Repositories;
 using FinalProjectDotNet.Infrastructure;
-using FinalProjectDotNet.Models;
-using FinalProjectDotNet.Views.MainViewChild;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,13 +16,56 @@ namespace FinalProjectDotNet.ViewModels
 {
     public class MainViewModel : BaseNotifyPropertyChanged
     {
+        #region Commands
+        public ICommand AddIncome { get; set; }
+        public ICommand AddExpence { get; set; }
+        private void InitCommands()
+        {
+            AddIncome = new RelayCommand(x =>
+            {
+                
+            });
+
+            AddExpence = new RelayCommand(x =>
+            {
+                
+            });
+
+        }
+        #endregion
+
         User currentUser;
+        decimal cash;
+        DateTime dateTime = DateTime.Now.Date;
+        public IncomeType SelectedIncomeType;
+        public ExpencesType SelectedExpencesType;
         public User CurrentUser
         {
             get => currentUser;
             set
             {
                 currentUser = value;
+                Cash = CurrentUser.WalletAmount;
+                init();
+                Notify();
+            }
+        }
+        public DateTime DateTime
+        {
+            get => dateTime;
+            set
+            {
+                dateTime = value;
+                Notify();
+            }
+        }
+
+        public decimal Cash
+        {
+            get => cash;
+            set
+            {
+                cash = value;
                 Notify();
             }
         }
@@ -65,6 +106,8 @@ namespace FinalProjectDotNet.ViewModels
 
         public MainViewModel()
         {
+            InitCommands();
+
             context = new UsersContext();
             expRepo = new ExpencesRepo(context);
             expTypesRepo = new ExpTypeRepo(context);
@@ -72,8 +115,8 @@ namespace FinalProjectDotNet.ViewModels
             incTypesRepo = new IncTypeRepo(context);
             userRepo = new UserRepo(context);
 
-            Expences = new ObservableCollection<Expences>(expRepo.GetAll());
-            Income = new ObservableCollection<Income>(incRepo.GetAll());
+            Expences = new ObservableCollection<Expences>(expRepo.GetAll().OrderBy(x => x.Date));
+            Income = new ObservableCollection<Income>(incRepo.GetAll().OrderBy(x => x.Date));
             ExpTypes = new ObservableCollection<ExpencesType>(expTypesRepo.GetAll());
             IncTypes = new ObservableCollection<IncomeType>(incTypesRepo.GetAll());
             Users = new ObservableCollection<User>(userRepo.GetAll());
@@ -93,28 +136,11 @@ namespace FinalProjectDotNet.ViewModels
             YearExpences = new ObservableCollection<Expences>();
         }
 
-        public void ChangeUserById(int id)
+        public User Login(string login) => context.User.Where(x => x.Login == login).Single();
+        public void AddUser(string login, decimal cash)
         {
-            CurrentUser = context.User.Find(id);
-            Cash = CurrentUser.WalletAmount;
-
-            //MessageBox.Show(DateTime.Now.Date.ToString());
-
-            init();
-        }
-
-        public User Login(int id) => context.User.Find(id);
-
-
-        decimal cash;
-        public decimal Cash
-        {
-            get => cash;
-            set
-            {
-                cash = value;
-                Notify();
-            }
+            context.User.Add(new User { Login = login, WalletAmount = cash });
+            context.SaveChanges();
         }
 
         void init()
@@ -129,10 +155,10 @@ namespace FinalProjectDotNet.ViewModels
                 if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddDays(-7)))
                     WeekExpences.Add(i);
             foreach (var i in Expences)
-                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddDays(-31)))
+                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddMonths(-1)))
                     MonthExpences.Add(i);
             foreach (var i in Expences)
-                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddDays(-365)))
+                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddYears(-1)))
                     YearExpences.Add(i);
 
 
@@ -146,10 +172,10 @@ namespace FinalProjectDotNet.ViewModels
                 if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddDays(-7)))
                     WeekIncome.Add(i);
             foreach (var i in Income)
-                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddDays(-31)))
+                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddMonths(-1)))
                     MonthIncome.Add(i);
             foreach (var i in Income)
-                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddDays(-365)))
+                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddYears(-1)))
                     YearIncome.Add(i);
         }
     }

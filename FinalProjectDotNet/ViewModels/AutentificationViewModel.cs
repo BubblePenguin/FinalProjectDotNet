@@ -1,5 +1,5 @@
-﻿using FinalProjectDotNet.Infrastructure;
-using FinalProjectDotNet.Models;
+﻿using FinalProjectDotNet.DAL;
+using FinalProjectDotNet.Infrastructure;
 using FinalProjectDotNet.Views.MainViewChild;
 using System;
 using System.Collections.Generic;
@@ -20,22 +20,21 @@ namespace FinalProjectDotNet.ViewModels
         {
             AutentificationCommand = new RelayCommand(x =>
             {
-                int userid = AufModel.Auf(Login);
-                if (userid != -1)
+                User user = MainViewModel.Login(Login);
+                if (user != null)
                 {
-                    MainViewModel.ChangeUserById(userid);
+                    MainViewModel.CurrentUser = user;
                     CurentView = new MainApp();
                 }
             });
 
             RegistrationCommand = new RelayCommand(x =>
             {
-                AufModel.Add(Login, Cash);
-
-                int userid = AufModel.Auf(Login);
-                if (userid != -1)
+                MainViewModel.AddUser(Login, Cash);
+                User user = MainViewModel.Login(Login);
+                if (user != null)
                 {
-                    MainViewModel.ChangeUserById(userid);
+                    MainViewModel.CurrentUser = user;
                     CurentView = new MainApp();
                 }
             });

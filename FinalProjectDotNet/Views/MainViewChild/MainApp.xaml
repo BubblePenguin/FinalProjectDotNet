@@ -83,16 +83,9 @@
                             <Label Content="Add Income | Sum:" Grid.Column="0"/>
                             <TextBox Grid.Column="1" TextAlignment="Center"/>
                             <Label Content="Date:" Grid.Column="2"/>
-                            <ComboBox Grid.Column="3" ItemsSource="{Binding }"/>
+                            <TextBlock Grid.Column="3" Text="{Binding DateTime}"/>
                             <Label Content="Object: " Grid.Column="4"/>
-                            <ComboBox Grid.Column="5" ItemsSource="{Binding IncomeTypes}" ItemTemplate="{StaticResource objtemplate}">
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Name}"/>
-                                        <TextBlock Text="{Binding Id}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox>
+                            <ComboBox Grid.Column="5" ItemsSource="{Binding IncTypes}" ItemTemplate="{StaticResource objtemplate}" SelectedItem="{Binding SelectedIncomeType}"/>
                             <Label Content="Comment:" Grid.Column="6"/>
                             <TextBox Grid.Column="7" TextWrapping="Wrap" FontSize="10"/>
                             <Button Content="Add" Padding="10 0 10 0" Grid.Column="8"/>
@@ -141,9 +134,9 @@
                             <Label Content="Add Expence | Sum:" Grid.Column="0"/>
                             <TextBox Grid.Column="1" TextAlignment="Center"/>
                             <Label Content="Date:" Grid.Column="2"/>
-                            <ComboBox Grid.Column="3"/>
+                            <TextBlock Grid.Column="3" Text="{Binding DateTime}"/>
                             <Label Content="Object: " Grid.Column="4"/>
-                            <ComboBox Grid.Column="5"/>
+                            <ComboBox Grid.Column="5" ItemsSource="{Binding ExpTypes}" ItemTemplate="{StaticResource objtemplate}"/>
                             <Label Content="Comment:" Grid.Column="6"/>
                             <TextBox Grid.Column="7" TextWrapping="Wrap" FontSize="10" Text=""/>
                             <Button Content="Add" Padding="10 0 10 0" Grid.Column="8"/>
