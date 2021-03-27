@@ -65,9 +65,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DAL\Repositories\ExpencesRepo.cs" />
+    <Compile Include="DAL\Repositories\ExpTypeRepo.cs" />
+    <Compile Include="DAL\Repositories\GenericRpository.cs" />
+    <Compile Include="DAL\Repositories\IncomeRepo.cs" />
+    <Compile Include="DAL\Repositories\IncTypeRepo.cs" />
+    <Compile Include="DAL\Repositories\IRepository.cs" />
+    <Compile Include="DAL\Repositories\UserRepo.cs" />
     <Compile Include="Infrastructure\RelayCommand.cs" />
     <Compile Include="Models\AufModel.cs" />
-    <Compile Include="Models\MainModel.cs" />
     <Compile Include="ViewModels\AutentificationViewModel.cs" />
     <Compile Include="Views\MainViewChild\Autentification.xaml.cs">
       <DependentUpon>Autentification.xaml</DependentUpon>
@@ -83,12 +89,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DAL\Expences.cs" />
-    <Compile Include="DAL\ExpencesType.cs" />
-    <Compile Include="DAL\Income.cs" />
-    <Compile Include="DAL\IncomeType.cs" />
-    <Compile Include="DAL\User.cs" />
-    <Compile Include="DAL\UsersContext.cs" />
+    <Compile Include="DAL\Contexts\Expences.cs" />
+    <Compile Include="DAL\Contexts\ExpencesType.cs" />
+    <Compile Include="DAL\Contexts\Income.cs" />
+    <Compile Include="DAL\Contexts\IncomeType.cs" />
+    <Compile Include="DAL\Contexts\User.cs" />
+    <Compile Include="DAL\Contexts\UsersContext.cs" />
     <Compile Include="Infrastructure\BaseNotifyPropertyChanged.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">

@@ -9,7 +9,7 @@ namespace FinalProjectDotNet.DAL
     public class Expences
     {
         public int Id { get; set; }
-        public User UserId { get; set; }
+        public User User { get; set; }
         public DateTime Date { get; set; }
         public decimal Sum { get; set; }
         //public int TypeId { get; set; }

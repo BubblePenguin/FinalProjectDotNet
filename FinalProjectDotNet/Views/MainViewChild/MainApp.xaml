@@ -6,11 +6,28 @@
              xmlns:local="clr-namespace:FinalProjectDotNet.Views.MainViewChild"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <Grid Background="white" DataContext="{Binding MainViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="13*"/>
         </Grid.RowDefinitions>
+        <Grid.Resources>
+            <DataTemplate x:Key="listtemplate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding User.Login}"/>
+                    <TextBlock Text=" | "/>
+                    <TextBlock Text="{Binding Date}"/>
+                    <TextBlock Text=" | "/>
+                    <TextBlock Text="{Binding Sum}"/>
+                    <TextBlock Text=" | "/>
+                    <TextBlock Text="{Binding Type.Name}"/>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="objtemplate">
+                <TextBlock Text="{Binding Name}"/>
+            </DataTemplate>
+        </Grid.Resources>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -21,7 +38,7 @@
             <Border Grid.Column="1" Background="White" BorderBrush="Gainsboro" BorderThickness="1">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Wallet: " Margin="10 0 0 0"/>
-                    <Label Content="{Binding CurrentUser.WalletAmount}"/>
+                    <Label Content="{Binding Cash}"/>
                 </StackPanel>
             </Border>
             <!--<Button Grid.Column="2">OK</Button>-->
@@ -35,19 +52,19 @@
                     </Grid.RowDefinitions>
                     <TabControl Grid.Row="0">
                         <TabItem Header="Day">
-                            
+                            <ListBox ItemsSource="{Binding DayIncome}" ItemTemplate="{StaticResource listtemplate}"/>
                         </TabItem>
                         <TabItem Header="Week">
-
+                            <ListBox ItemsSource="{Binding WeekIncome}" ItemTemplate="{StaticResource listtemplate}"/>
                         </TabItem>
                         <TabItem Header="Month">
-
+                            <ListBox ItemsSource="{Binding MonthIncome}" ItemTemplate="{StaticResource listtemplate}"/>
                         </TabItem>
                         <TabItem Header="Year">
-
+                            <ListBox ItemsSource="{Binding YearIncome}" ItemTemplate="{StaticResource listtemplate}"/>
                         </TabItem>
-                        <TabItem Header="Period">
-
+                        <TabItem Header="All Time">
+                            <ListBox ItemsSource="{Binding AllIncome}" ItemTemplate="{StaticResource listtemplate}"/>
                         </TabItem>
                     </TabControl>
                     <Grid Grid.Row="1">
@@ -66,9 +83,16 @@
                             <Label Content="Add Income | Sum:" Grid.Column="0"/>
                             <TextBox Grid.Column="1" TextAlignment="Center"/>
                             <Label Content="Date:" Grid.Column="2"/>
-                            <ComboBox Grid.Column="3" ItemsSource="{Binding Dates}"/>
+                            <ComboBox Grid.Column="3" ItemsSource="{Binding }"/>
                             <Label Content="Object: " Grid.Column="4"/>
-                            <ComboBox Grid.Column="5" ItemsSource="{Binding MainViewModel.temp}"/>
+                            <ComboBox Grid.Column="5" ItemsSource="{Binding IncomeTypes}" ItemTemplate="{StaticResource objtemplate}">
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}"/>
+                                        <TextBlock Text="{Binding Id}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox>
                             <Label Content="Comment:" Grid.Column="6"/>
                             <TextBox Grid.Column="7" TextWrapping="Wrap" FontSize="10"/>
                             <Button Content="Add" Padding="10 0 10 0" Grid.Column="8"/>
@@ -86,19 +110,19 @@
                     </Grid.RowDefinitions>
                     <TabControl Grid.Row="0">
                         <TabItem Header="Day">
-
+                            <ListBox ItemsSource="{Binding DayExpences}" ItemTemplate="{StaticResource listtemplate}"/>
                         </TabItem>
                         <TabItem Header="Week">
-
+                            <ListBox ItemsSource="{Binding WeekExpences}" ItemTemplate="{StaticResource listtemplate}"/>
                         </TabItem>
                         <TabItem Header="Month">
-
+                            <ListBox ItemsSource="{Binding MonthExpences}" ItemTemplate="{StaticResource listtemplate}"/>
                         </TabItem>
                         <TabItem Header="Year">
-
+                            <ListBox ItemsSource="{Binding YearExpences}" ItemTemplate="{StaticResource listtemplate}"/>
                         </TabItem>
-                        <TabItem Header="Period">
-
+                        <TabItem Header="All Time">
+                            <ListBox ItemsSource="{Binding AllExpences}" ItemTemplate="{StaticResource listtemplate}"/>
                         </TabItem>
                     </TabControl>
                     <Grid Grid.Row="1">
