@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace FinalProjectDotNet.ViewModels
 {
-    public class MainViewModel : BaseNotifyPropertyChanged
+    public class MainViewModel : BaseNotifyPropertyChanged, IDisposable
     {
         public ICommand AddIncome { get; set; }
         public ICommand AddExpence { get; set; }
@@ -364,6 +364,11 @@ namespace FinalProjectDotNet.ViewModels
                 init();
             });
 
+        }
+
+        public void Dispose()
+        {
+            context.Dispose();
         }
     }
 }
