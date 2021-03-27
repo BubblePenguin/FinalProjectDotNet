@@ -16,59 +16,21 @@ namespace FinalProjectDotNet.ViewModels
 {
     public class MainViewModel : BaseNotifyPropertyChanged
     {
-        #region Commands
         public ICommand AddIncome { get; set; }
         public ICommand AddExpence { get; set; }
-        private void InitCommands()
-        {
-            AddIncome = new RelayCommand(x =>
-            {
-                
-            });
-
-            AddExpence = new RelayCommand(x =>
-            {
-                
-            });
-
-        }
-        #endregion
+        
 
         User currentUser;
         decimal cash;
-        DateTime dateTime = DateTime.Now.Date;
-        public IncomeType SelectedIncomeType;
-        public ExpencesType SelectedExpencesType;
-        public User CurrentUser
-        {
-            get => currentUser;
-            set
-            {
-                currentUser = value;
-                Cash = CurrentUser.WalletAmount;
-                init();
-                Notify();
-            }
-        }
-        public DateTime DateTime
-        {
-            get => dateTime;
-            set
-            {
-                dateTime = value;
-                Notify();
-            }
-        }
 
-        public decimal Cash
-        {
-            get => cash;
-            set
-            {
-                cash = value;
-                Notify();
-            }
-        }
+        DateTime selecteddatetime = DateTime.Now;
+        IncomeType selectedincometype;
+        ExpencesType selectedexpencestype;
+        decimal selectedcash = 0;
+
+
+        ObservableCollection<Expences> expences;
+        ObservableCollection<Income> income;
 
 
         private UsersContext context;
@@ -77,31 +39,6 @@ namespace FinalProjectDotNet.ViewModels
         private IRepository<Income> incRepo;
         private IRepository<IncomeType> incTypesRepo;
         private IRepository<User> userRepo;
-
-
-
-
-        public ObservableCollection<Expences> Expences { get; set; }
-        public ObservableCollection<Income> Income { get; set; }
-        public ObservableCollection<ExpencesType> ExpTypes { get; set; }
-        public ObservableCollection<IncomeType> IncTypes { get; set; }
-        public ObservableCollection<User> Users { get; set; }
-
-
-
-
-        public ObservableCollection<Income> AllIncome { get; set; }
-        public ObservableCollection<Income> DayIncome { get; set; }
-        public ObservableCollection<Income> WeekIncome { get; set; }
-        public ObservableCollection<Income> MonthIncome { get; set; }
-        public ObservableCollection<Income> YearIncome { get; set; }
-
-        public ObservableCollection<Expences> AllExpences { get; set; }
-        public ObservableCollection<Expences> DayExpences { get; set; }
-        public ObservableCollection<Expences> WeekExpences { get; set; }
-        public ObservableCollection<Expences> MonthExpences { get; set; }
-        public ObservableCollection<Expences> YearExpences { get; set; }
-
 
 
         public MainViewModel()
@@ -143,40 +80,290 @@ namespace FinalProjectDotNet.ViewModels
             context.SaveChanges();
         }
 
+
+
+        
+
+        public ObservableCollection<ExpencesType> ExpTypes { get; set; }
+        public ObservableCollection<IncomeType> IncTypes { get; set; }
+        public ObservableCollection<User> Users { get; set; }
+
+
+        ObservableCollection<Income> allincome;
+        ObservableCollection<Income> dayincome;
+        ObservableCollection<Income> weekincome;
+        ObservableCollection<Income> monthincome;
+        ObservableCollection<Income> yearincome;
+
+        public ObservableCollection<Income> AllIncome
+        {
+            get => allincome;
+            set
+            {
+                allincome = value;
+                Notify();
+            }
+        }
+        public ObservableCollection<Income> DayIncome 
+        {
+            get => dayincome;
+            set
+            {
+                dayincome = value;
+                Notify();
+            }
+        }
+        public ObservableCollection<Income> WeekIncome
+        {
+            get => weekincome;
+            set
+            {
+                weekincome = value;
+                Notify();
+            }
+        }
+        public ObservableCollection<Income> MonthIncome
+        {
+            get => monthincome;
+            set
+            {
+                monthincome = value;
+                Notify();
+            }
+        }
+        public ObservableCollection<Income> YearIncome
+        {
+            get => yearincome;
+            set
+            {
+                yearincome = value;
+                Notify();
+            }
+        }
+
+
+        ObservableCollection<Expences> allexpences;
+        ObservableCollection<Expences> dayexpences;
+        ObservableCollection<Expences> weekexpences;
+        ObservableCollection<Expences> monthexpences;
+        ObservableCollection<Expences> yearexpences;
+
+        public ObservableCollection<Expences> AllExpences
+        {
+            get => allexpences;
+            set
+            {
+                allexpences = value;
+                Notify();
+            }
+        }
+        public ObservableCollection<Expences> DayExpences
+        {
+            get => dayexpences;
+            set
+            {
+                dayexpences = value;
+                Notify();
+            }
+        }
+        public ObservableCollection<Expences> WeekExpences
+        {
+            get => weekexpences;
+            set
+            {
+                weekexpences = value;
+                Notify();
+            }
+        }
+        public ObservableCollection<Expences> MonthExpences
+        {
+            get => monthexpences;
+            set
+            {
+                monthexpences = value;
+                Notify();
+            }
+        }
+        public ObservableCollection<Expences> YearExpences
+        {
+            get => yearexpences;
+            set
+            {
+                yearexpences = value;
+                Notify();
+            }
+        }
+
+
+        public User CurrentUser
+        {
+            get => currentUser;
+            set
+            {
+                currentUser = value;
+                Cash = CurrentUser.WalletAmount;
+                init();
+                Notify();
+            }
+        }
+
+        public decimal Cash
+        {
+            get => cash;
+            set
+            {
+                cash = value;
+                CurrentUser.WalletAmount = value;
+                context.SaveChanges();
+                Notify();
+            }
+        }
+
+
+        public DateTime SelectedDateTime
+        {
+            get => selecteddatetime;
+            set
+            {
+                selecteddatetime = value;
+                Notify();
+            }
+        }
+        public IncomeType SelectedIncomeType
+        {
+            get => selectedincometype;
+            set
+            {
+                selectedincometype = value;
+                Notify();
+            }
+
+        }
+        public ExpencesType SelectedExpencesType
+        {
+            get => selectedexpencestype;
+            set
+            {
+                selectedexpencestype = value;
+                Notify();
+            }
+
+        }
+        public decimal SelectedCash
+        {
+            get => selectedcash;
+            set
+            {
+                selectedcash = value;
+                Notify();
+            }
+        }
+
+
+
+
+        public ObservableCollection<Expences> Expences
+        {
+            get => expences;
+            set
+            {
+                expences = value;
+                init();
+                Notify();
+            }
+        }
+        public ObservableCollection<Income> Income
+        {
+            get => income;
+            set
+            {
+                income = value;
+                init();
+                Notify();
+            }
+        }
+
+
+
+
+
+
+
         void init()
         {
-            foreach (var i in Expences)
-                if (i.User.Id == CurrentUser.Id)
-                    AllExpences.Add(i);
-            foreach (var i in Expences)
-                if (i.User.Id == CurrentUser.Id && i.Date.Date == DateTime.Now.Date)
-                    DayExpences.Add(i);
-            foreach (var i in Expences)
-                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddDays(-7)))
-                    WeekExpences.Add(i);
-            foreach (var i in Expences)
-                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddMonths(-1)))
-                    MonthExpences.Add(i);
-            foreach (var i in Expences)
-                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddYears(-1)))
-                    YearExpences.Add(i);
+            if (Expences != null && CurrentUser != null)
+            {
+                AllExpences = new ObservableCollection<Expences>();
+                DayExpences = new ObservableCollection<Expences>();
+                WeekExpences = new ObservableCollection<Expences>();
+                MonthExpences = new ObservableCollection<Expences>();
+                YearExpences = new ObservableCollection<Expences>();
 
+                foreach (var i in Expences)
+                    if (i.User.Id == CurrentUser.Id)
+                        AllExpences.Add(i);
+                foreach (var i in Expences)
+                    if (i.User.Id == CurrentUser.Id && i.Date.Date == DateTime.Now.Date)
+                        DayExpences.Add(i);
+                foreach (var i in Expences)
+                    if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddDays(-7)))
+                        WeekExpences.Add(i);
+                foreach (var i in Expences)
+                    if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddMonths(-1)))
+                        MonthExpences.Add(i);
+                foreach (var i in Expences)
+                    if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddYears(-1)))
+                        YearExpences.Add(i);
+            }
 
-            foreach (var i in Income)
-                if (i.User.Id == CurrentUser.Id)
-                    AllIncome.Add(i);
-            foreach (var i in Income)
-                if (i.User.Id == CurrentUser.Id && i.Date.Date == DateTime.Now.Date)
-                    DayIncome.Add(i);
-            foreach (var i in Income)
-                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddDays(-7)))
-                    WeekIncome.Add(i);
-            foreach (var i in Income)
-                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddMonths(-1)))
-                    MonthIncome.Add(i);
-            foreach (var i in Income)
-                if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddYears(-1)))
-                    YearIncome.Add(i);
+            if (Income != null && CurrentUser != null)
+            {
+                AllIncome = new ObservableCollection<Income>();
+                DayIncome = new ObservableCollection<Income>();
+                WeekIncome = new ObservableCollection<Income>();
+                MonthIncome = new ObservableCollection<Income>();
+                YearIncome = new ObservableCollection<Income>();
+
+                foreach (var i in Income)
+                {
+                    if (i.User.Id == CurrentUser.Id)
+                        AllIncome.Add(i);
+                    if (i.User.Id == CurrentUser.Id && i.Date.Date == DateTime.Now.Date)
+                        DayIncome.Add(i);
+                    if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddDays(-7)))
+                        WeekIncome.Add(i);
+                    if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddMonths(-1)))
+                        MonthIncome.Add(i);
+                    if (i.User.Id == CurrentUser.Id && (i.Date.Date <= DateTime.Now.Date && i.Date.Date >= DateTime.Now.AddYears(-1)))
+                        YearIncome.Add(i);
+                }
+            }
+        }
+
+        private void InitCommands()
+        {
+            AddIncome = new RelayCommand(x =>
+            {
+                context.Income.Add(new Income { Date = SelectedDateTime, User = CurrentUser, Sum = SelectedCash, Type = SelectedIncomeType });
+                Cash += SelectedCash;
+                context.SaveChanges();
+                Income = new ObservableCollection<Income>(incRepo.GetAll().OrderBy(y => y.Date));
+                SelectedCash = 0;
+                SelectedIncomeType = null;
+                init();
+            });
+
+            AddExpence = new RelayCommand(x =>
+            {
+                context.Expences.Add(new Expences { Date = SelectedDateTime, User = CurrentUser, Sum = SelectedCash, Type = SelectedExpencesType });
+                Cash -= SelectedCash;
+                context.SaveChanges();
+                Expences = new ObservableCollection<Expences>(expRepo.GetAll().OrderBy(y => y.Date));
+                SelectedCash = 0;
+                SelectedExpencesType = null;
+                init();
+            });
+
         }
     }
 }
